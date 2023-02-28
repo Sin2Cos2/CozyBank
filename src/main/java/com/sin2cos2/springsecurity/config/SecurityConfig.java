@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.CorsConfigurationSource ;
 
 import java.util.Collections;
 
@@ -52,7 +52,9 @@ public class SecurityConfig {
                 .addFilterBefore(new JWTTokenValidatorFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests()
                 .requestMatchers("/user").authenticated()
-                .requestMatchers("/account", "/balance", "/loans", "/cards").hasRole("USER")
+                // Authorization will be implemented on the method's level
+                .requestMatchers("/loands").authenticated()
+                .requestMatchers("/account", "/balance", "/cards").hasRole("USER")
                 .requestMatchers("/notices", "/contact", "/register").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
