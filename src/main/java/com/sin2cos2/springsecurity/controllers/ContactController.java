@@ -4,8 +4,7 @@ import com.sin2cos2.springsecurity.models.Contact;
 import com.sin2cos2.springsecurity.repositories.ContactRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PostFilter;
-import org.springframework.security.access.prepost.PreFilter;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +19,7 @@ public class ContactController {
 
     private final ContactRepository contactRepository;
 
-    @GetMapping("/contact")
+    @PostMapping("/contact")
     //@PreFilter("filterObject.contactName != 'Test'")
     @PostFilter("filterObject.contactName != 'Test'")
     public List<Contact> saveContactInquiryDetails(@RequestBody List<Contact> contacts) {
